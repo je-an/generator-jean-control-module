@@ -1,0 +1,20 @@
+{
+  "name": "<%= name %>",
+  "version": "0.0.0",
+  "description": "<%= description %>",
+  "main": ".js",
+  "scripts": {
+    "test": "open spec/spec-runner.html in browser"
+  },
+  "keywords": <%= keywords %>,
+  "author": "Jeremias Andris",
+  "license": "MIT",
+  "dependencies": {
+    "jean-amd": "1.0.2",
+    "jean-control": "1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/je-an/<%= name %>.git"
+  }
+}

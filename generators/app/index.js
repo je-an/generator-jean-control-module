@@ -1,12 +1,9 @@
 'use strict';
 const Generator = require('yeoman-generator');
-const stringifyObject = require('stringify-object');
 const chalk = require('chalk');
 const yosay = require('yosay');
 var mkdirp = require('mkdirp');
 var path = "";
-// In your generator
-
 
 module.exports = class extends Generator {
   prompting() {
@@ -105,14 +102,17 @@ module.exports = class extends Generator {
       this.destinationPath(srcPath + '/' + args.constructor + '.js'),
       args
     );
+    var examplePath = path + "/example";
+    mkdirp.sync(examplePath);
+    this.fs.copyTpl(
+      this.templatePath('example/_index.html'),
+      this.destinationPath(examplePath + '/index.html'),
+      args
+    );
     var elementDir = process.cwd() + '/' + path;
-    process.chdir(elementDir)
-    this.installDependencies({
-      bower: false,
-      npm: true,
-      callback: function () {
-        console.log('Everything is ready!');
-      }
-    });
+    process.chdir(elementDir);
+    this.npmInstall(['jquery'], { 'save-dev': true, "legacy-bundling": true });
+    this.npmInstall(['jean-amd'], { 'save-dev': true, "legacy-bundling": true });
+    this.npmInstall(['jean-control'], { 'save-dev': true, "legacy-bundling": true });
   }
 };

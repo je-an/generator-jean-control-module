@@ -53,7 +53,8 @@ module.exports = class extends Generator {
       description: this.props.description,
       keywords: JSON.stringify(keywords),
       optimize: this.props.optimize,
-      constructor: this.props.constructor
+      constructor: this.props.constructor,
+      constructorLowerCase: this.props.constructor.toLowerCase()
     };
     path = args.constructor;
     console.log("writing: " + path);
@@ -102,6 +103,16 @@ module.exports = class extends Generator {
       this.destinationPath(srcPath + '/' + args.constructor + '.js'),
       args
     );
+    this.fs.copyTpl(
+      this.templatePath('src/_.less'),
+      this.destinationPath(srcPath + '/' + args.constructorLowerCase + '.less'),
+      args
+    );
+    this.fs.copyTpl(
+      this.templatePath('src/_.css'),
+      this.destinationPath(srcPath + '/' + args.constructorLowerCase + '.css'),
+      args
+    );
     var examplePath = path + "/example";
     mkdirp.sync(examplePath);
     this.fs.copyTpl(
@@ -111,8 +122,11 @@ module.exports = class extends Generator {
     );
     var elementDir = process.cwd() + '/' + path;
     process.chdir(elementDir);
-    this.npmInstall(['jquery'], { 'save-dev': true, "legacy-bundling": true });
-    this.npmInstall(['jean-amd'], { 'save-dev': true, "legacy-bundling": true });
-    this.npmInstall(['jean-control'], { 'save-dev': true, "legacy-bundling": true });
+    this.npmInstall(['require-css'], { 'save': true, "legacy-bundling": true });
+    this.npmInstall(['jquery'], { 'save': true, "legacy-bundling": true });
+    this.npmInstall(['jean-amd'], { 'save': true, "legacy-bundling": true });
+    this.npmInstall(['jean-control'], { 'save': true, "legacy-bundling": true });
+    this.npmInstall(['jean-inheritance'], { 'save': true, "legacy-bundling": true });
+    this.npmInstall(['jean-type-check'], { 'save': true, "legacy-bundling": true });
   }
 };

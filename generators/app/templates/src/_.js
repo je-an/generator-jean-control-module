@@ -14,11 +14,13 @@ define(
          * @alias <%= constr %> 
          * @constructor
          * @param {Object} options - options object
+         * @param {Object} options.id - id of the element
          */
         var <%= constr %> = function(options) {
             var defaultOptions = {};
             Inheritance.inheritConstructor(DomElement, this, Merge({
                 html: controlHtml,
+                id: TypeCheck.isString(options.id) ? options.id : ""
             }, TypeCheck.isDefined(options) ? options : {}));
 
         };

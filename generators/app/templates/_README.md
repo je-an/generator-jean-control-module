@@ -3,20 +3,20 @@
 <%= description %>
 
 ## Support
-Supports AMD eco system. If there is no loader, <%= constructor %> is registered as a browser variable.
+Supports AMD eco system. If there is no loader, <%= constr %> is registered as a browser variable.
 
 ## Code Example
 - Use it as browser variable
 ```js
-var obj = new <%= constructor %>();
+var obj = new <%= constr %>();
 
 // Creates the control
 obj.create();
 ```
 - Use it with require.js
 ```js
-require(["path/to/<%= constructor %>"], function(<%= constructor %>){
-    // Work with <%= constructor %>
+require(["path/to/<%= constr %>"], function(<%= constr %>){
+    // Work with <%= constr %>
 });
 ```
 
@@ -30,7 +30,7 @@ require(["path/to/<%= constructor %>"], function(<%= constructor %>){
 
 ## API Reference
 
-### <%= constructor %> Constructor
+### <%= constr %> Constructor
 
 **Options**
 - **placeholder**: `String` - `mandatory` - description

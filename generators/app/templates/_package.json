@@ -6,7 +6,7 @@
   "scripts": {
     "test": "open spec/spec-runner.html in browser"
   },
-  "keywords": <%= keywords %>,
+  "keywords": "",
   "author": "Jeremias Andris",
   "license": "MIT",
   "dependencies": {

@@ -25,7 +25,7 @@ module.exports = class extends Generator {
     },
     {
       type: 'input',
-      name: 'const',
+      name: 'constr',
       message: 'What is the name of this modules main class: ',
       default: ""
     }, {
@@ -48,10 +48,10 @@ module.exports = class extends Generator {
       description: this.props.description,
       keywords: JSON.stringify(keywords),
       optimize: this.props.optimize,
-      const: this.props.const,
-      constLowerCase: this.props.const.toLowerCase()
+      constr: this.props.constr,
+      constrLowerCase: this.props.constr.toLowerCase()
     };
-    path = args.const;
+    path = args.constr;
     console.log("writing: " + path);
     mkdirp.sync(path);
     this.fs.copyTpl(
@@ -83,7 +83,7 @@ module.exports = class extends Generator {
     mkdirp.sync(specPath);
     this.fs.copyTpl(
       this.templatePath('spec/_.spec.js'),
-      this.destinationPath(specPath + '/' + args.const + '.spec.js'),
+      this.destinationPath(specPath + '/' + args.constr + '.spec.js'),
       args
     );
     this.fs.copyTpl(
@@ -95,17 +95,17 @@ module.exports = class extends Generator {
     mkdirp.sync(srcPath);
     this.fs.copyTpl(
       this.templatePath('src/_.js'),
-      this.destinationPath(srcPath + '/' + args.const + '.js'),
+      this.destinationPath(srcPath + '/' + args.constr + '.js'),
       args
     );
     this.fs.copyTpl(
       this.templatePath('src/_.less'),
-      this.destinationPath(srcPath + '/' + args.constLowerCase + '.less'),
+      this.destinationPath(srcPath + '/' + args.constrLowerCase + '.less'),
       args
     );
     this.fs.copyTpl(
       this.templatePath('src/_.css'),
-      this.destinationPath(srcPath + '/' + args.constLowerCase + '.css'),
+      this.destinationPath(srcPath + '/' + args.constrLowerCase + '.css'),
       args
     );
     var examplePath = path + "/example";

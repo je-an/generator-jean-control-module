@@ -16,10 +16,10 @@
     <section id="<%= name %>-container"></section>
     <script src="../dist/<%= name %>.js"></script>
     <script>
-        var control = new <%= constructor %>({
-            containerId: "<%= name %>-container",
+        var control = new <%= constr %>({
+           
         });
-        control.create();
+        document.getElementById("<%= name %>-container").appendChild(control.element);
     </script>
 </body>
 

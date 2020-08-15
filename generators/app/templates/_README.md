@@ -10,8 +10,7 @@ Supports AMD eco system. If there is no loader, <%= constr %> is registered as a
 ```js
 var obj = new <%= constr %>();
 
-// Creates the control
-obj.create();
+
 ```
 - Use it with require.js
 ```js

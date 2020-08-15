@@ -33,12 +33,12 @@
         require.config({
             baseUrl: '..',
             paths: {
-                <%= control %>: "dist/<%= name %>"
+                <%= constr %>: "dist/<%= name %>"
             }
         });
 
         require([
-            'spec/<%= control %>.spec'
+            'spec/<%= constr %>.spec'
         ],
             function () {
                window.executeJasmineTests();

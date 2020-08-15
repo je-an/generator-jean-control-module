@@ -91,21 +91,27 @@ module.exports = class extends Generator {
       this.destinationPath(specPath + '/spec-runner.html'),
       args
     );
+    mkdirp.sync(path + "/dist");
     var srcPath = path + "/src";
-    mkdirp.sync(srcPath);
+    mkdirp.sync(srcPath);    
     this.fs.copyTpl(
       this.templatePath('src/_.js'),
       this.destinationPath(srcPath + '/' + args.constr + '.js'),
       args
     );
     this.fs.copyTpl(
-      this.templatePath('src/_.less'),
-      this.destinationPath(srcPath + '/' + args.constrLowerCase + '.less'),
+      this.templatePath('src/css/_.less'),
+      this.destinationPath(srcPath + '/css/' + args.constrLowerCase + '.less'),
       args
     );
     this.fs.copyTpl(
-      this.templatePath('src/_.css'),
-      this.destinationPath(srcPath + '/' + args.constrLowerCase + '.css'),
+      this.templatePath('src/css/_.css'),
+      this.destinationPath(srcPath + '/css/' + args.constrLowerCase + '.css'),
+      args
+    );
+    this.fs.copyTpl(
+      this.templatePath('src/html/_.html'),
+      this.destinationPath(srcPath + '/html/' + args.constrLowerCase + '.html'),
       args
     );
     var examplePath = path + "/example";
@@ -117,11 +123,12 @@ module.exports = class extends Generator {
     );
     var elementDir = process.cwd() + '/' + path;
     process.chdir(elementDir);
-    this.npmInstall(['require-css'], { 'save': true, "legacy-bundling": true });
-    this.npmInstall(['jquery'], { 'save': true, "legacy-bundling": true });
-    this.npmInstall(['jean-amd'], { 'save': true, "legacy-bundling": true });
-    this.npmInstall(['jean-control'], { 'save': true, "legacy-bundling": true });
-    this.npmInstall(['jean-inheritance'], { 'save': true, "legacy-bundling": true });
-    this.npmInstall(['jean-type-check'], { 'save': true, "legacy-bundling": true });
+    this.installDependencies({
+      bower: false,
+      npm: true,
+      callback: function () {
+        console.log('New Control is ready!');
+      }
+    });
   }
 };

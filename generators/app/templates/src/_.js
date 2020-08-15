@@ -6,9 +6,9 @@ define(
         "TypeCheck",
         "Failure",
         "Merge",
-        "text!<%= constructorLowerCase %>-html"
-        "css!<%= constructorLowerCase %>-css"
-    ], function (DomElement, DomUtil, Inheritance, TypeCheck, Failure, Merge) {
+        "text!<%= constrLowerCase %>-html",
+        "css!<%= constrLowerCase %>-css"
+    ], function (DomElement, DomUtil, Inheritance, TypeCheck, Failure, Merge, controlHtml) {
         /**
          * <%= description %> 
          * @alias <%= constr %> 
@@ -17,8 +17,10 @@ define(
          */
         var <%= constr %> = function(options) {
             var defaultOptions = {};
-            Inheritance.inheritConstructor(DomElement, this, Merge({}, TypeCheck.isDefined(options) ? options : {}));
-            this._element = $("<div id='<%= name %>'></div>");
+            Inheritance.inheritConstructor(DomElement, this, Merge({
+                html: controlHtml,
+            }, TypeCheck.isDefined(options) ? options : {}));
+
         };
         Inheritance.inheritPrototype(<%= constr %>, DomElement);
         return <%= constr %>;

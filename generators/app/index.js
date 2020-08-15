@@ -22,15 +22,10 @@ module.exports = class extends Generator {
       name: 'description',
       message: 'Describe the functionality of this module: ',
       default: "Please provide additional information"
-    }/* , {
-      type: 'input',
-      name: 'keywords',
-      message: 'Describe this module with keywords (Splitted by comma): ',
-      default: ""
-    } */,
+    },
     {
       type: 'input',
-      name: 'constructor',
+      name: 'const',
       message: 'What is the name of this modules main class: ',
       default: ""
     }, {
@@ -53,10 +48,10 @@ module.exports = class extends Generator {
       description: this.props.description,
       keywords: JSON.stringify(keywords),
       optimize: this.props.optimize,
-      constructor: this.props.constructor,
-      constructorLowerCase: this.props.constructor.toLowerCase()
+      const: this.props.const,
+      constLowerCase: this.props.const.toLowerCase()
     };
-    path = args.constructor;
+    path = args.const;
     console.log("writing: " + path);
     mkdirp.sync(path);
     this.fs.copyTpl(
@@ -88,7 +83,7 @@ module.exports = class extends Generator {
     mkdirp.sync(specPath);
     this.fs.copyTpl(
       this.templatePath('spec/_.spec.js'),
-      this.destinationPath(specPath + '/' + args.constructor + '.spec.js'),
+      this.destinationPath(specPath + '/' + args.const + '.spec.js'),
       args
     );
     this.fs.copyTpl(
@@ -100,17 +95,17 @@ module.exports = class extends Generator {
     mkdirp.sync(srcPath);
     this.fs.copyTpl(
       this.templatePath('src/_.js'),
-      this.destinationPath(srcPath + '/' + args.constructor + '.js'),
+      this.destinationPath(srcPath + '/' + args.const + '.js'),
       args
     );
     this.fs.copyTpl(
       this.templatePath('src/_.less'),
-      this.destinationPath(srcPath + '/' + args.constructorLowerCase + '.less'),
+      this.destinationPath(srcPath + '/' + args.constLowerCase + '.less'),
       args
     );
     this.fs.copyTpl(
       this.templatePath('src/_.css'),
-      this.destinationPath(srcPath + '/' + args.constructorLowerCase + '.css'),
+      this.destinationPath(srcPath + '/' + args.constLowerCase + '.css'),
       args
     );
     var examplePath = path + "/example";

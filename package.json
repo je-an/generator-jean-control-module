@@ -1,13 +1,8 @@
 {
   "name": "generator-jean-control-module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Provides project scaffolding for controls within jean environment",
   "homepage": "",
-  "author": {
-    "name": "Jeremias Andris",
-    "email": "mail@jeremiasandris.de",
-    "url": "jeremiasandris.de"
-  },
   "files": [
     "generators"
   ],
@@ -34,8 +29,6 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "prepublish": "nsp check",
-    "pretest": "eslint . --fix",
     "test": "jest"
   },
   "eslintConfig": {
